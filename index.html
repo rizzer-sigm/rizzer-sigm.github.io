@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Femboy/Furry Gallery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #111;
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr); /* 5 GIFs per row */
+            gap: 10px;
+            padding: 20px;
+            justify-items: center;
+        }
+
+        .gallery img {
+            border-radius: 8px;
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-height: 300px; /* optional: scale very tall GIFs */
+        }
+    </style>
+</head>
+<body>
+    <h1>Femboy/Furry Gallery</h1>
+    <div class="gallery" id="gallery"></div>
+
+    <script>
+        const gifList = [
+            "counterarg.gif",
+            "furry.gif",
+            "furry2.gif",
+            "furry3.gif",
+            "furry4.gif",
+            "furry5.gif",
+            "furry6.gif",
+            "shh-pipe-down.gif",
+            "8497216.gif",
+            "attachment-5.gif",
+            "togif.gif",
+            "attachment-6.gif",
+            "togif2.gif",
+            "pregnant.gif",
+            "attachment.gif",
+            "9055BC1F-D4A9-43DF-A5FD-8D50F584C1C0.gif",
+        ];
+
+        const gallery = document.getElementById("gallery");
+
+        gifList.forEach(file => {
+            const img = document.createElement("img");
+            img.src = `gifs/${file}`;
+            img.alt = file;
+            gallery.appendChild(img);
+        });
+    </script>
+</body>
+</html>
