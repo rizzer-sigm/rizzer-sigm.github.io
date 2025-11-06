@@ -13,6 +13,8 @@
     <meta name="twitter:title" content="Femboy Gallery ❤️">
     <meta name="twitter:description" content="cute femboys OwO">
     <meta name="twitter:image" content="https://femboy.blitzedzz.xyz/gifs/boykisser.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -43,6 +45,8 @@
 <body>
     <h1>Femboy/Furry Gallery</h1>
     <div class="gallery" id="gallery"></div>
+
+
 
 <script>
 const gifList = [
@@ -86,20 +90,31 @@ const gallery = document.getElementById("gallery");
 
 gifList.forEach(file => {
     const img = document.createElement("img");
-    img.alt = file;
-    img.style.display = "none"; // hide until loaded
     img.src = `gifs/${file}`;
-    
-    // Only show when fully loaded
-    img.onload = () => {
-        img.style.display = "block"; // now it animates
-        gallery.appendChild(img);
-    }
+    img.alt = file;
+    img.style.cursor = "pointer";
+
+    img.addEventListener("click", () => {
+        const url = `${window.location.origin}/gifs/${file}`;
+        navigator.clipboard.writeText(url).then(() => {
+            Toastify({
+                text: "Copied to clipboard!",
+                duration: 2000,
+                gravity: "top",
+                position: "center",
+                backgroundColor: "#4CAF50",
+                stopOnFocus: true
+            }).showToast();
+        }).catch(err => console.error("Failed to copy: ", err));
+    });
+
+    gallery.appendChild(img);
 });
 </script>
 
 </body>
 </html>
+
 
 
 
