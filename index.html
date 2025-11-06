@@ -44,53 +44,64 @@
     <h1>Femboy/Furry Gallery</h1>
     <div class="gallery" id="gallery"></div>
 
-    <script>
-        const gifList = [
-            "counterarg.gif",
-            "furry.gif",
-            "furry2.gif",
-            "furry3.gif",
-            "furry4.gif",
-            "furry5.gif",
-            "furry6.gif",
-            "shh-pipe-down.gif",
-            "8497216.gif",
-            "attachment-5.gif",
-            "boykisser.gif",
-            "togif.gif",
-            "attachment-6.gif",
-            "togif2.gif",
-            "pregnant.gif",
-            "attachment.gif",
-            "9055BC1F-D4A9-43DF-A5FD-8D50F584C1C0.gif",
-            "attachment-1-1.gif",
-            "togif3.gif",
-            "off-with-his-head.gif",
-            "watermark.gif",
-            "watermark2.gif",
-            "0B2E269C-5B2C-4EEC-B2D2-20A783FE78A7.gif",
-            "seeingboys.gif",
-            "20230907_084256.gif",
-            "hoponcs.gif",
-            "20230719_051642.gif",
-            "FysXJM3XoAE3oOu.gif",
-            "war.gif",
-            "togif67.gif",
-            "memex.gif",
-            
-        ];
+<script>
+    const gifList = [
+        "counterarg.gif",
+        "furry.gif",
+        "furry2.gif",
+        "furry3.gif",
+        "furry4.gif",
+        "furry5.gif",
+        "furry6.gif",
+        "shh-pipe-down.gif",
+        "8497216.gif",
+        "attachment-5.gif",
+        "boykisser.gif",
+        "togif.gif",
+        "attachment-6.gif",
+        "togif2.gif",
+        "pregnant.gif",
+        "attachment.gif",
+        "9055BC1F-D4A9-43DF-A5FD-8D50F584C1C0.gif",
+        "attachment-1-1.gif",
+        "togif3.gif",
+        "off-with-his-head.gif",
+        "watermark.gif",
+        "watermark2.gif",
+        "0B2E269C-5B2C-4EEC-B2D2-20A783FE78A7.gif",
+        "seeingboys.gif",
+        "20230907_084256.gif",
+        "hoponcs.gif",
+        "20230719_051642.gif",
+        "FysXJM3XoAE3oOu.gif",
+        "war.gif",
+        "togif67.gif",
+        "memex.gif",
+        "cute one.gif",
+        "cutefemboy.gif",
+        "ECB3249D-95CD-479E-BD31-0CC3946504CE.gif",
+    ];
 
-        const gallery = document.getElementById("gallery");
+    const gallery = document.getElementById("gallery");
 
-        gifList.forEach(file => {
-            const img = document.createElement("img");
-            img.src = `gifs/${file}`;
-            img.alt = file;
-            gallery.appendChild(img);
-        });
-    </script>
+    gifList.forEach(file => {
+        const img = document.createElement("img");
+        img.alt = file;
+
+        // Load GIF as blob first (so it doesn't play immediately)
+        fetch(`gifs/${file}`)
+            .then(response => response.blob())
+            .then(blob => {
+                const url = URL.createObjectURL(blob);
+                img.src = url; // GIF will start only after fully loaded
+                gallery.appendChild(img);
+            });
+    });
+</script>
+
 </body>
 </html>
+
 
 
 
